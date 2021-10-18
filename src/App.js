@@ -1,43 +1,21 @@
 import './App.css';
-import Recipe from './Recipe';
-import { useState , useEffect} from 'react';
-import {Button, FormControl, InputLabel, Input} from '@mui/material';
-import db from './firebase';
-import firebase from 'firebase';
+import React from "react";
+// import { Route } from "react-router-dom";
+// import AddReceipe from "./components/AddingReceipe";
+import Navbar from "./components/Navbar";
+
+
 
 function App() {
-  const [recipes, setRecipes] = useState([]);
-  const [input, setInput] = useState('');
 
-  useEffect(() => {
-    db.collection('recipes').orderBy('timestamp','desc').onSnapshot(snapshot => {
-      setRecipes(snapshot.docs.map(doc => ({id: doc.id, recipe: doc.data().recipe})))
-    })
-  }, []);
-
-  const addRecipeTitle = (event) => {
-    event.preventDefault();
-    db.collection('recipes').add({
-      recipe: input,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    // alert('Added Title');
-    setRecipes([...recipes, input]);
-    setInput('');
-  }
   return (
-    
+
     <div className="App">
-      <h1>Personal Recipe App 🍕</h1>
-      <FormControl className="app__searchform">
-        <InputLabel>Recipe Name</InputLabel>
-        <Input type="text" placeholder="Pizza" className="app__input" value={input} onChange={event => setInput(event.target.value)}/>
-        <Button className="app__submitButton" disabled={!input} className="app_addValue" type="submit" variant="contained" onClick={addRecipeTitle}>Add New Recipe</Button>
-      </FormControl>
-      <ul>
-        {recipes.map((recipe)=> 
-        <Recipe recipe={recipe}/>)}
-      </ul>
+      {/* <Navbar /> */}
+      {/* <Route exact path="/" component={() => <Home />} />
+      <Route exact path="/add" component={() => <AddPost />} />
+      <Route exact path="/edit/:id" component={() => <EditContact />} /> */}
+
     </div>
   );
 }
