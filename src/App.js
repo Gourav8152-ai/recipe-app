@@ -6,12 +6,12 @@ import db from './firebase';
 import firebase from 'firebase';
 
 function App() {
-  const [recipes, setRecipes] = useState(['hello','hi']);
+  const [recipes, setRecipes] = useState([]);
   const [input, setInput] = useState('');
 
   useEffect(() => {
     db.collection('recipes').orderBy('timestamp','desc').onSnapshot(snapshot => {
-      setRecipes(snapshot.docs.map(doc => doc.data().recipe))
+      setRecipes(snapshot.docs.map(doc => ({id: doc.id, recipe: doc.data().recipe})))
     })
   }, []);
 
@@ -36,7 +36,7 @@ function App() {
       </FormControl>
       <ul>
         {recipes.map((recipe)=> 
-        <Recipe text={recipe}/>)}
+        <Recipe recipe={recipe}/>)}
       </ul>
     </div>
   );

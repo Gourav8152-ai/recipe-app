@@ -1,6 +1,8 @@
 import React from 'react';
-import {List, ListItem, ListItemText, ListItemAvatar} from '@mui/material';
+import {List, ListItem, ListItemText, ListItemAvatar, Button} from '@mui/material';
 import './Recipe.css';
+import db from './firebase';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Recipe(props) {
     return (
@@ -9,8 +11,10 @@ function Recipe(props) {
               <ListItemAvatar>
                 {/* <InboxIcon /> */}
               </ListItemAvatar>
-              <ListItemText primary={props.text} secondary="Khana ke recipe" />
+              <ListItemText primary={props.recipe.recipe} secondary="Recipe" />
           </ListItem>
+          <DeleteIcon onClick={event => {
+            db.collection('recipes').doc(props.recipe.id).delete()}}>❌ Delete the Recipe</DeleteIcon>
         </List>
         // <div>
         //     <li>{props.text}</li>
