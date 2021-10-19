@@ -17,7 +17,7 @@ Let's setup the backend server on your local machine.
 
 ### 1. Fork repo
 Fork this repo to your GitHub account
-![forkedimage](https://github.com/Gourav8152-ai/recipe-app/forkedimage.png)
+![forkedimage](https://github.com/Gourav8152-ai/recipe-app/blob/main/forkedimage.PNG)
 
 ### 2. Clone repo
 Clone the forked repo to your local machine
@@ -42,7 +42,7 @@ Your application setup is successfully completed!
 # development
 $ npm start
 ```
-![screenshot](https://github.com/Gourav8152-ai/recipe-app/screenshot.png)
+![screenshot](https://github.com/Gourav8152-ai/recipe-app/blob/main/screenshot.PNG)
 
 ### Here is your Recipe App in your local system
 
