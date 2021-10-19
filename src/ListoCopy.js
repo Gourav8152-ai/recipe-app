@@ -47,9 +47,9 @@ export default function ListoCopy() {
   return (
 
     <div className="App">
-      <h1>Your Personal Receipe List 🍕</h1>
-      <TableContainer component={Paper} style={{width: '75vw', marginLeft: '100px', padding: '10px'}}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <h1 style={{marginBottom: "20px"}}>Your Personal Receipe List 🍕</h1>
+      <TableContainer component={Paper} style={{width: '80vw', marginLeft: '100px', padding: '10px', marginBottom: '20px'}}>
+        <Table  aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>Receipe</StyledTableCell>

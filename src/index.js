@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
-import Navbar from './Navbar';
+import Navigationbar from './Navigationbar';
 import Home from './Home';
 import Listo from './Listo';
 import ListoCopy from './ListoCopy';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 ReactDOM.render(
-
   <BrowserRouter>
-  <Navbar />
+  <Navigationbar />
   <Switch>
     <Route exact path="/Home" component={Home}></Route>
     <Route exact path="/ListoCopy" component={ListoCopy}></Route>
