@@ -31,7 +31,7 @@ function Home(){
       }
     return(
         <div className="App" style={{backgroundColor : 'white', color : 'Black'}}>
-      <h1>Add Your Personal Receipe 🍕</h1>
+      <h1>Add Your Personal Recipe 🍕</h1>
       <FormControl className="app__searchform" >
         <InputLabel>Recipe Name</InputLabel>
         <Input type="text" placeholder="Pizza" className="app__input" style={{ marginTop: '30px' }} value={input} onChange={event => setInput(event.target.value)}/>
