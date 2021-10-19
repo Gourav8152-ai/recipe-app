@@ -1,41 +1,73 @@
 import './App.css';
+import { styled } from '@mui/material/styles';
 import RecipeList from './RecipeList';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 // import {Button, FormControl, InputLabel, Input, TextField} from '@mui/material';
 import db from './firebase';
 // import firebase from 'firebase';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
-function ListoCopy() {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+export default function ListoCopy() {
   const [recipes, setRecipes] = useState([]);
-  // const [input, setInput] = useState('');
-  // const [inputIngrident, setInputIngrident] = useState('');
-  // const [inputPreparation, setInputPreparation] = useState('');
+
 
 
   useEffect(() => {
-    db.collection('recipes').orderBy('timestamp','desc').onSnapshot(snapshot => {
-      setRecipes(snapshot.docs.map(doc => ({id: doc.id, recipe: doc.data().recipe, ingrident: doc.data().ingrident, preparation: doc.data().preparation})))
+    db.collection('recipes').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+      setRecipes(snapshot.docs.map(doc => ({ id: doc.id, recipe: doc.data().recipe, ingrident: doc.data().ingrident, preparation: doc.data().preparation })))
     })
   }, []);
 
   return (
-    
+
     <div className="App">
       <h1>Your Personal Receipe List 🍕</h1>
-      {/* <FormControl className="app__searchform">
-        <InputLabel>Recipe Name</InputLabel>
-        <Input type="text" placeholder="Pizza" className="app__input" style={{ marginTop: '30px' }} value={input} onChange={event => setInput(event.target.value)}/>
-        <TextField type="text" placeholder="Enter the Ingridents" multiline rows={7} rowsMax={15} className="app__inputIngrident" style={{ marginTop: '15px' }} value={inputIngrident} onChange={event => setInputIngrident(event.target.value)}/>
-        <TextField type="text" placeholder="Enter the preparation steps" multiline rows={5} rowsMax={7} className="app__inputPreparation" style={{ marginTop: '15px' }} value={inputPreparation} onChange={event => setInputPreparation(event.target.value)}/>
-        <Button className="app__submitButton" disabled={!input, !inputIngrident, !inputPreparation} className="app_addValue" style={{ marginTop: '15px' }} type="submit" variant="contained" onClick={addRecipeTitle}>Add New Recipe</Button>
-      </FormControl> */}
-      <ul>
-        {recipes.map((recipe)=>
-        <RecipeList recipe={recipe} />)}
-      </ul>
+      <TableContainer component={Paper} style={{width: '75vw', marginLeft: '100px', padding: '10px'}}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Receipe</StyledTableCell>
+              <StyledTableCell align="right">Ingrident</StyledTableCell>
+              <StyledTableCell align="right">Preparation</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {recipes.map((recipe) =>
+              <RecipeList recipe={recipe} />)}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
-}
-
-export default ListoCopy;
+} 
+export {
+  StyledTableRow,
+  StyledTableCell,
+};
 
